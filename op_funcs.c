@@ -1,10 +1,10 @@
 /**
- * pall - prints all stack elements
+ * op_pall - prints all stack elements
  * @stack: the stack
  * @line_number: linenumber
  * Return: none
  */
-void pall(stack_t **stack, unsigned int line_number)
+void op_pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
 
@@ -18,24 +18,24 @@ void pall(stack_t **stack, unsigned int line_number)
 
 
 /**
- * pint - prints top stack element
+ * op_pint - prints top stack element
  * @stack: the stack
  * @line_number: linenumber
  * Return: none
  */
-void pint(stack_t **stack, unsigned int line_number)
+void op_pint(stack_t **stack, unsigned int line_number)
 {
 	printf("%d", (*stack)->n);
 }
 
 
 /**
- * pop - deletes top element from stack
+ * op_pop - deletes top element from stack
  * @stack: the stack
  * @line_number: linenumber
  * Return: none
  */
-void pop(stack_t **stack, unsigned int line_number)
+void op_pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
 
@@ -47,12 +47,12 @@ void pop(stack_t **stack, unsigned int line_number)
 
 
 /**
- * swap - swaps the data of the first two nodes of stack
+ * op_swap - swaps the data of the first two nodes of stack
  * @stack: the stack
  * @line_number: linenumber
  * Return: none
  */
-void swap(stack_t **stack, unsigned int line_number)
+void op_swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
 	int a;
@@ -68,12 +68,12 @@ void swap(stack_t **stack, unsigned int line_number)
 
 
 /**
- * add - adds data of first two nodes together
+ * op_add - adds data of first two nodes together
  * @stack: the stack
  * @line_number: linenumber
  * Return: none
  */
-void add(stack_t **stack, unsigned int line_number)
+void op_add(stack_t **stack, unsigned int line_number)
 {
 	int a, b, sum;
 	stack_t *tmp = *stack;

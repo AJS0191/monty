@@ -36,10 +36,10 @@ typedef struct instruction_s
 int collect_data(char *filename);
 void (find_op(char *possible_op))(stack_t **, unsigned int);
 void op_pall(stack_t **stack, unsigned int line_number);
-void pint(stack_t **stack, unsigned int line_number);
-void pop(stack_t **stack, unsigned int line_number);
-void swap(stack_t **stack, unsigned int line_number);
-void op_push(int n);
+void op_pint(stack_t **stack, unsigned int line_number);
+void op_pop(stack_t **stack, unsigned int line_number);
+void op_swap(stack_t **stack, unsigned int line_number);
+void op_push(int n, unsigned int line_number);
 stack_t **stack_builder(int value, int max_lines);
 
 
