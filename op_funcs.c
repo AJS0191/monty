@@ -1,3 +1,5 @@
+#include "monty.h"
+
 /**
  * op_pall - prints all stack elements
  * @stack: the stack
@@ -7,12 +9,15 @@
 void op_pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
-
-	tmp = *stack;
-	while (tmp != NULL)
+	(void) line_number;
+	if (stack)
 	{
-		printf("%d", tmp->n);
-		tmp = tmp->next;
+		tmp = *stack;
+		while (tmp != NULL)
+		{
+			printf("%d", tmp->n);
+			tmp = tmp->next;
+		}
 	}
 }
 
@@ -25,6 +30,11 @@ void op_pall(stack_t **stack, unsigned int line_number)
  */
 void op_pint(stack_t **stack, unsigned int line_number)
 {
+	if (stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 	printf("%d", (*stack)->n);
 }
 
@@ -39,6 +49,11 @@ void op_pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
 
+	if (stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 	tmp = (*stack)->next;
 	free(*stack);
 	*stack = tmp;
@@ -57,7 +72,19 @@ void op_swap(stack_t **stack, unsigned int line_number)
 	stack_t *tmp = *stack;
 	int a;
 	int b;
+	int elements = 0;
 
+	while (tmp != NULL)
+	{
+		elements++;
+		tmp = tmp->next;
+	}
+	if (elements < 2)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	tmp = *stack;
 	a = (*stack)->n;
 	tmp = tmp->next;
 	b = tmp->n;
@@ -77,11 +104,24 @@ void op_add(stack_t **stack, unsigned int line_number)
 {
 	int a, b, sum;
 	stack_t *tmp = *stack;
+	int elements = 0;
+
+	while (tmp != NULL)
+	{
+		elements++;
+		tmp = tmp->next;
+	}
+	if (elements < 2)
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	tmp = *stack;
 
 	tmp = tmp->next;
 
 	a = (*stack)->n;
-	b = (*tmp)->n;
+	b = tmp->n;
 	sum = a + b;
 
 	tmp->n = sum;
