@@ -1,18 +1,9 @@
-void push(int n)
-{
-	stack_t *newNode;
-	stack_t *head;
-
-	newNode = malloc(sizeof(stack_t));
-	if (newNode == NULL)
-		return (NULL);
-	newNode->n = number;
-	newNode->prev = NULL;
-	newNode->next = head;
-	head = new;
-	return (newNode);
-}
-
+/**
+ * pall - prints all stack elements
+ * @stack: the stack
+ * @line_number: linenumber
+ * Return: none
+ */
 void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
@@ -24,11 +15,26 @@ void pall(stack_t **stack, unsigned int line_number)
 		tmp = tmp->next;
 	}
 }
+
+
+/**
+ * pint - prints top stack element
+ * @stack: the stack
+ * @line_number: linenumber
+ * Return: none
+ */
 void pint(stack_t **stack, unsigned int line_number)
 {
 	printf("%d", (*stack)->n);
 }
 
+
+/**
+ * pop - deletes top element from stack
+ * @stack: the stack
+ * @line_number: linenumber
+ * Return: none
+ */
 void pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
@@ -38,6 +44,14 @@ void pop(stack_t **stack, unsigned int line_number)
 	*stack = tmp;
 	(*stack)->prev = NULL;
 }
+
+
+/**
+ * swap - swaps the data of the first two nodes of stack
+ * @stack: the stack
+ * @line_number: linenumber
+ * Return: none
+ */
 void swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
@@ -50,8 +64,15 @@ void swap(stack_t **stack, unsigned int line_number)
 
 	(*stack)->n = b;
 	tmp->n = a;
-
 }
+
+
+/**
+ * add - adds data of first two nodes together
+ * @stack: the stack
+ * @line_number: linenumber
+ * Return: none
+ */
 void add(stack_t **stack, unsigned int line_number)
 {
 	int a, b, sum;
