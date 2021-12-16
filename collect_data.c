@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "monty.h"
 
 int collect_data(char *filename)
 {
@@ -9,7 +8,7 @@ int collect_data(char *filename)
 	int c;
 	int wordcount = 0;
 	stack_t **stack = NULL;
-	int linecount = 0;
+	unsigned int linecount = 1;
 
 	printf("FILENAME:%s\n", filename);
 	fp = fopen (filename, "r");
@@ -24,7 +23,7 @@ int collect_data(char *filename)
 		wordcount = 0;
 		while ((c = fgetc(fp)) != '\n')
 		{
-			if (wordcount == 2)
+			if (wordcount >= 1)
 			{
 				while (fgetc(fp) != '\n')
 					;
@@ -32,10 +31,12 @@ int collect_data(char *filename)
 				break;
 			}
 			ungetc(c, fp);
-			fscanf(fp, "%s %d", str1, &number);
-			printf("This is the string: %s\n", str1);
-			printf("This is the number: %d\n", number);
-			wordcount++;
+			fscanf(fp, "%s", str1);
+			if (strcmp(str1, "push"))
+			{
+				fscanf(fp, "%d", &number);
+				wordcount++;
+			}
 			wordcount++;
 			if (stack == NULL)
 			{
@@ -45,10 +46,12 @@ int collect_data(char *filename)
 					break;
 				}
 				else
-					ERROR NO STACK;
+				{
+					fprintf(stderr, "Error: malloc failed\n");
+					exit(EXIT_FAILURE);
+				}
 			}
-			void (find_op(str1))(stack, linecount);
-					}
+			find_op(str1)(stack, linecount);
 		}
 
 	}

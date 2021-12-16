@@ -1,4 +1,5 @@
-void (find_op(char *possible_op))(stack_t **, unsigned int)
+#include "monty.h"
+void (*find_op(char *possible_op))(stack_t **, unsigned int)
 {
 	instruction_t instructions[] = {
 		{"push", op_push},
@@ -15,7 +16,8 @@ void (find_op(char *possible_op))(stack_t **, unsigned int)
 	{
 		if(strcmp(possible_op,instructions[i].opcode) == 0)
 		{
-			instructions[i].f;
+			return (instructions[i].f);
 		}
 	}
+	return(NULL);
 }
