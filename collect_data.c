@@ -13,19 +13,22 @@ int collect_data(char *filename)
 
 	printf("FILENAME:%s\n", filename);
 	fp = fopen (filename, "r");
-
-	/* need a way to find the total linecount  */
+	if (fp == NULL)
+	{
+		fprintf(stderr,"Error: Can't open file %s\n", filename);
+		exit(EXIT_FAILURE);
+	}
 	while ((c = fgetc(fp)) != EOF)
 	{
 		ungetc(c, fp);
 		wordcount = 0;
 		while ((c = fgetc(fp)) != '\n')
 		{
-			linecount++;
 			if (wordcount == 2)
 			{
 				while (fgetc(fp) != '\n')
 					;
+				linecount++;
 				break;
 			}
 			ungetc(c, fp);
