@@ -37,6 +37,8 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+FILE *fp;
+
 int collect_data(char *filename);
 void (*find_op(char *possible_op))(stack_t **, unsigned int);
 void op_pall(stack_t **stack, unsigned int line_number);
@@ -46,6 +48,6 @@ void op_swap(stack_t **stack, unsigned int line_number);
 void op_push(stack_t **stack, unsigned int line_number);
 void op_add(stack_t **stack, unsigned int line_number);
 stack_t **stack_builder(int value, int max_lines);
-
+void free_stack(stack_t **stack);
 
 #endif /* MONTY_H */

@@ -36,11 +36,6 @@ int collect_data(char *filename)
 				fscanf(fp, "%s", str1);
 				if (strcmp(str1, "push") == 0)
 				{
-					c = fgetc(fp);
-					while (c != '\n'
-						{
-							if(c 
-						}
 					fscanf(fp, "%d", &number);
 					wordcount++;
 					push = 1;
