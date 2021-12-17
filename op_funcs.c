@@ -9,7 +9,9 @@ void op_pall(stack_t **stack, unsigned int line_number)
 {
         stack_t *tmp;
         (void) line_number;
-        if (stack)
+
+		printf("Trying to print with pall\n");
+        if (stack || (*stack)->next)
         {
                 tmp = (*stack)->next;
                 while (tmp != NULL)
@@ -48,16 +50,28 @@ void op_pop(stack_t **stack, unsigned int line_number)
 {
         stack_t *tmp;
 
-        if (stack == NULL)
+        if (*stack == NULL)
         {
                 fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
                 exit(EXIT_FAILURE);
         }
-		tmp = (*stack)->next;
-		printf("tmp:%d\n", tmp->n);
-		(*stack)->next = tmp->prev;
-		printf("stack->next:%d\n", (*stack)->next->n);
-		free(tmp);
+
+		if ((*stack)->next->prev)
+		{
+
+			tmp = (*stack)->next;
+			printf("tmp:%d\n", tmp->n);
+			(*stack)->next = tmp->prev;
+			printf("stack->next:%d\n", (*stack)->next->n);
+			free(tmp);
+		}
+		else
+		{
+			(*stack)->next = NULL;
+			free((*stack)->next);
+
+		}
+		printf("popped the node\n");
 }
 
 
@@ -77,20 +91,22 @@ void op_swap(stack_t **stack, unsigned int line_number)
 
 	while (tmp != NULL)
     {
+		printf("tmp: %d\n", tmp->n);
 		elements++;
-		tmp = tmp->next;
+		tmp = tmp->prev;
+
     }
         if (elements < 2)
         {
                 fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
                 exit(EXIT_FAILURE);
         }
-        tmp = *stack;
-        a = (*stack)->n;
-        tmp = tmp->next;
+        tmp = (*stack)->next;
+        a = (*stack)->next->n;
+        tmp = tmp->prev;
         b = tmp->n;
 
-        (*stack)->n = b;
+        (*stack)->next->n = b;
         tmp->n = a;
 }
 
@@ -103,30 +119,28 @@ void op_swap(stack_t **stack, unsigned int line_number)
  */
 void op_add(stack_t **stack, unsigned int line_number)
 {
-        int a, b, sum;
-        stack_t *tmp = *stack;
+        int a;
+        stack_t *tmp = (*stack)->next;
+
         int elements = 0;
+
+		printf("tmp: %d\n", tmp->n);
 
         while (tmp != NULL)
         {
                 elements++;
-                tmp = tmp->next;
+                tmp = tmp->prev;
         }
         if (elements < 2)
 	{
                 fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
                 exit(EXIT_FAILURE);
         }
-        tmp = *stack;
+        tmp = (*stack)->next;
 
-        tmp = tmp->next;
+		(*stack)->next = tmp->prev;
+		a = tmp->n;
+		(*stack)->next->n = a + (*stack)->next->n;
+		free(tmp);
 
-        a = (*stack)->n;
-        b = tmp->n;
-        sum = a + b;
-
-        tmp->n = sum;
-        tmp->prev = NULL;
-        free(*stack);
-        *stack = tmp;
 }

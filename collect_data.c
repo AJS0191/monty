@@ -59,6 +59,7 @@ int collect_data(char *filename)
 			if (push == 1)
                                 (*stack)->n = number;
                         printf("*stack->n: %d\n", (*stack)->n);
+						printf("n: %d\n", number);
                         find_op(str1)(stack, linecount);
                         push = 0;
                 }

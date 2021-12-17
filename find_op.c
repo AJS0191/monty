@@ -12,7 +12,7 @@ void (*find_op(char *possible_op))(stack_t **, unsigned int)
 	};
 	int i;
 
-	for (i = 0; i < 4; i++)
+	for (i = 0; i < 6; i++)
 	{
 		if(strcmp(possible_op,instructions[i].opcode) == 0)
 		{
