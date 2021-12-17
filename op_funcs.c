@@ -69,27 +69,29 @@ void op_pop(stack_t **stack, unsigned int line_number)
  */
 void op_swap(stack_t **stack, unsigned int line_number)
 {
-/*	stack_t *tmp = (*stack)->next; */
+	stack_t *tmp = (*stack)->next;
         int a;
         int b;
         int elements = 0;
 
 
-		printf("stack: %d\n", (*stack)->next->prev->n);
-		/*
-        while (tmp != NULL)
-        {
-                elements++;
-				printf("tmp: %d\n", tmp->n);
-                tmp = tmp->prev;
-        }
+	while (tmp != NULL)
+    {
+		elements++;
+		tmp = tmp->next;
+    }
         if (elements < 2)
         {
                 fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
                 exit(EXIT_FAILURE);
         }
-		printf("tmp: %d\n", tmp->n);
-*/
+        tmp = *stack;
+        a = (*stack)->n;
+        tmp = tmp->next;
+        b = tmp->n;
+
+        (*stack)->n = b;
+        tmp->n = a;
 }
 
 
