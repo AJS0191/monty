@@ -1,5 +1,4 @@
 #include "monty.h"
-
 /**
  * op_pall - prints all stack elements
  * @stack: the stack
@@ -48,17 +47,17 @@ void op_pint(stack_t **stack, unsigned int line_number)
 void op_pop(stack_t **stack, unsigned int line_number)
 {
         stack_t *tmp;
-        stack_t *head = *stack;
 
         if (stack == NULL)
         {
                 fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
                 exit(EXIT_FAILURE);
         }
-        tmp = head->next;
-head->next = head->next->next;
-        head->next->prev = head;
-        free(tmp);
+		tmp = (*stack)->next;
+		printf("tmp:%d\n", tmp->n);
+		(*stack)->next = tmp->prev;
+		printf("stack->next:%d\n", (*stack)->next->n);
+		free(tmp);
 }
 
 
@@ -70,16 +69,17 @@ head->next = head->next->next;
  */
 void op_swap(stack_t **stack, unsigned int line_number)
 {
-        stack_t *tmp = *stack;
+	stack_t *tmp = (*stack)->next;
         int a;
         int b;
         int elements = 0;
 
-        while (tmp != NULL)
-        {
-                elements++;
-                tmp = tmp->next;
-        }
+
+	while (tmp != NULL)
+    {
+		elements++;
+		tmp = tmp->next;
+    }
         if (elements < 2)
         {
                 fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
