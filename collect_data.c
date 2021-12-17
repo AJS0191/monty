@@ -2,7 +2,7 @@
 
 int collect_data(char *filename)
 {
-	FILE *fp;
+	extern FILE *fp;
 	char str1[10];
 	int number;
 	int c;
@@ -36,6 +36,11 @@ int collect_data(char *filename)
 				fscanf(fp, "%s", str1);
 				if (strcmp(str1, "push") == 0)
 				{
+					c = fgetc(fp);
+					while (c != '\n'
+						{
+							if(c 
+						}
 					fscanf(fp, "%d", &number);
 					wordcount++;
 					push = 1;
@@ -57,6 +62,7 @@ int collect_data(char *filename)
 				if (push == 1)
 					(*stack)->n = number;
 				find_op(str1)(stack, linecount);
+				(*stack)->n = 606;
 				push = 0;
 		}
 	}

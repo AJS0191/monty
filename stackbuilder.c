@@ -21,6 +21,7 @@ stack_t **stack_builder(int value, int max_lines)
 	if (head == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
+		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
 
