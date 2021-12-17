@@ -1,5 +1,11 @@
 #include "monty.h"
 
+/**
+ * stack_builder - builds the stack
+ * @value: value
+ * @max_lines: max lines
+ * Return: stack
+ */
 stack_t **stack_builder(int value, int max_lines)
 {
 	stack_t **stack = malloc(sizeof(stack_t *) * max_lines);
@@ -23,5 +29,5 @@ stack_t **stack_builder(int value, int max_lines)
 	head->next = NULL;
 	stack[0] = head;
 
-	return(stack);
+	return (stack);
 }

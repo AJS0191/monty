@@ -1,4 +1,10 @@
 #include "monty.h"
+
+/**
+ * find_op - matches the correct op_function
+ * @possible_op: word passed in from file
+ * Return: the correctly paired function
+ */
 void (*find_op(char *possible_op))(stack_t **, unsigned int)
 {
 	instruction_t instructions[] = {
@@ -14,10 +20,10 @@ void (*find_op(char *possible_op))(stack_t **, unsigned int)
 
 	for (i = 0; i < 6; i++)
 	{
-		if(strcmp(possible_op,instructions[i].opcode) == 0)
+		if (strcmp(possible_op, instructions[i].opcode) == 0)
 		{
 			return (instructions[i].f);
 		}
 	}
-	return(NULL);
+	return (NULL);
 }
