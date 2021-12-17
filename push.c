@@ -12,7 +12,7 @@ void op_push(stack_t **stack, unsigned int line_number)
         stack_t *head = *stack;
         int n = (*stack)->n;
         printf("This is *stack->n: %d\n", (*stack)->n);
-        printf("This is         n: %d\n", n);
+        /* printf("This is         n: %d\n", n); */
 
         if (n == '\0')
         {
