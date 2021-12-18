@@ -10,9 +10,9 @@ void op_pall(stack_t **stack, unsigned int line_number)
 	stack_t *tmp;
 	(void) line_number;
 
-	if (stack || (*stack)->next)
+	if (stack)
 	{
-		tmp = (*stack)->next;
+		tmp = (*stack);
 		while (tmp != NULL)
 		{
 			printf("%d\n", tmp->n);
@@ -36,7 +36,7 @@ void op_pint(stack_t **stack, unsigned int line_number)
 		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
-	printf("%d\n", (*stack)->next->n);
+	printf("%d\n", (*stack)->n);
 }
 
 
@@ -50,22 +50,22 @@ void op_pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
 
-	if (*stack == NULL)
+	if (stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
-	if ((*stack)->next->prev)
+	if ((*stack)->prev)
 	{
-		tmp = (*stack)->next;
-		(*stack)->next = tmp->prev;
+		tmp = (*stack);
+		(*stack) = tmp->prev;
 		free(tmp);
 	}
 	else
 	{
-		(*stack)->next = NULL;
-		free((*stack)->next);
+		(*stack) = NULL;
+		free((*stack));
 	}
 }
 
@@ -78,7 +78,7 @@ void op_pop(stack_t **stack, unsigned int line_number)
  */
 void op_swap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp = (*stack)->next;
+	stack_t *tmp = (*stack);
 	int a;
 	int b;
 	int elements = 0;
@@ -96,12 +96,12 @@ void op_swap(stack_t **stack, unsigned int line_number)
 		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
-	tmp = (*stack)->next;
-	a = (*stack)->next->n;
+	tmp = (*stack);
+	a = (*stack)->n;
 	tmp = tmp->prev;
 	b = tmp->n;
 
-	(*stack)->next->n = b;
+	(*stack)->n = b;
 	tmp->n = a;
 }
 
@@ -115,7 +115,7 @@ void op_swap(stack_t **stack, unsigned int line_number)
 void op_add(stack_t **stack, unsigned int line_number)
 {
 	int a;
-	stack_t *tmp = (*stack)->next;
+	stack_t *tmp = (*stack);
 	int elements = 0;
 
 	while (tmp != NULL)
@@ -129,10 +129,10 @@ void op_add(stack_t **stack, unsigned int line_number)
 		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
-	tmp = (*stack)->next;
+	tmp = (*stack);
 
-	(*stack)->next = tmp->prev;
+	(*stack) = tmp->prev;
 	a = tmp->n;
-	(*stack)->next->n = a + (*stack)->next->n;
+	(*stack)->n = a + (*stack)->n;
 	free(tmp);
 }

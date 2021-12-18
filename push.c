@@ -8,9 +8,10 @@
 */
 void op_push(stack_t **stack, unsigned int line_number)
 {
+	
 	stack_t *newNode;
 	stack_t *head = *stack;
-	int n = (*stack)->n;
+	int n = stack[1]->n;
 
 	if (n == 606)
 	{
@@ -27,9 +28,10 @@ void op_push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	newNode->n = n;
-	newNode->next = NULL;
-	newNode->prev = head->next;
+	newNode->prev = head;
 	if (line_number == 1)
 		newNode->prev = NULL;
-	head->next = newNode;
+	newNode->next = NULL;
+	head = newNode;
+	stack[0] = head;
 }
