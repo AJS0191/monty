@@ -36,9 +36,13 @@ int collect_data(char *filename)
 				fscanf(fp, "%s", str1);
 				if (strcmp(str1, "push") == 0)
 				{
-					fscanf(fp, "%d", &number);
-					wordcount++;
-					push = 1;
+					if (fscanf(fp, "%d", &number) == 1)
+					{
+						wordcount++;
+						push = 1;
+					}
+					else
+						number = 606;
 				}
 				wordcount++;
 				if (stack == NULL)
