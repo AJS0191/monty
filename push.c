@@ -12,7 +12,7 @@ void op_push(stack_t **stack, unsigned int line_number)
 	stack_t *head = *stack;
 	int n = (*stack)->n;
 
-	if (n == 606)
+	if (n == '\0')
 	{
 		fprintf(stderr, "%d: usage: push integer\n", line_number);
 		free_stack(stack);

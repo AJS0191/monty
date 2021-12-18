@@ -8,18 +8,14 @@ void free_stack(stack_t **stack)
 
 	while(tmp->prev != NULL)
 	{
-		printf("made it to tmp%d\n", tmp->n);
-		tmp = tmp->prev;
-	}
-
-	while (tmp)
-	{
 		free_hold = tmp;
-		tmp = tmp->next;
+		tmp = tmp->prev;
 		free(free_hold);
 	}
+	free(tmp);
 	if (stack[0])
 		free(stack[0]);
+
 	free(stack);
 	fclose(fp);
 }

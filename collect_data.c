@@ -62,6 +62,6 @@ int collect_data(char *filename)
 		}
 	}
 
-		free_stack(stack);
+	free_stack(stack);
 return (0);
 }
