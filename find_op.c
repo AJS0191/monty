@@ -5,7 +5,7 @@
  * @possible_op: word passed in from file
  * Return: the correctly paired function
  */
-void (*find_op(char *possible_op))(stack_t **, unsigned int)
+void (*find_op(char *possible_op, unsigned int line_number, stack_t **stack))(stack_t **, unsigned int)
 {
 	instruction_t instructions[] = {
 		{"push", op_push},
@@ -14,16 +14,18 @@ void (*find_op(char *possible_op))(stack_t **, unsigned int)
 		{"pop", op_pop},
 		{"swap", op_swap},
 		{"add", op_add},
-		{NULL, NULL}
+		{"nop", NULL},
 	};
 	int i;
 
-	for (i = 0; i < 6; i++)
+	for (i = 0; i < 7; i++)
 	{
 		if (strcmp(possible_op, instructions[i].opcode) == 0)
 		{
 			return (instructions[i].f);
 		}
 	}
+	op_not_found(possible_op, line_number, stack);
+
 	return (NULL);
 }

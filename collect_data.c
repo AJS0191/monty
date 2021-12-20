@@ -8,7 +8,7 @@ int collect_data(char *filename)
 	int c;
 	int wordcount = 0;
 	stack_t **stack = NULL;
-	unsigned int linecount = 0;
+	unsigned int linecount = 1;
 
 	fp = fopen(filename, "r");
 	if (fp == NULL)
@@ -30,30 +30,30 @@ int collect_data(char *filename)
 				}
 				break;
 			}
-				linecount++;
-				ungetc(c, fp);
-				fscanf(fp, "%s", str1);
-				if (strcmp(str1, "push") == 0)
+			ungetc(c, fp);
+			fscanf(fp, "%s", str1);
+			if (strcmp(str1, "push") == 0)
+			{
+				if (fscanf(fp, "%d", &number) == 1)
 				{
-					if (fscanf(fp, "%d", &number) == 1)
-					{
-						wordcount++;
-					}
-					else
-						number = 606;
+					wordcount++;
 				}
-				wordcount++;
-				if (stack == NULL)
+				else
+					number = 606;
+			}
+			wordcount++;
+			if (stack == NULL)
+			{
+				if (strcmp(str1, "push") == 0 || strcmp(str1, "pall") == 0)
 				{
-					if (strcmp(str1, "push") == 0 || strcmp(str1, "pall") == 0)
-					{
-						stack = stack_builder(number, 100);
-					}
+					stack = stack_builder(number, 100);
 				}
-				if (stack)
-					stack[1]->n = number;
-				find_op(str1)(stack, linecount);
-				stack[1]->n = 606;
+			}
+			if (stack)
+				stack[1]->n = number;
+			find_op(str1, linecount, stack)(stack, linecount);
+			linecount++;
+			stack[1]->n = 606;
 		}
 	}
 

@@ -40,7 +40,7 @@ typedef struct instruction_s
 FILE *fp;
 
 int collect_data(char *filename);
-void (*find_op(char *possible_op))(stack_t **, unsigned int);
+void (*find_op(char *possible_op, unsigned int line_number, stack_t **stack))(stack_t **, unsigned int);
 void op_pall(stack_t **stack, unsigned int line_number);
 void op_pint(stack_t **stack, unsigned int line_number);
 void op_pop(stack_t **stack, unsigned int line_number);
@@ -49,5 +49,6 @@ void op_push(stack_t **stack, unsigned int line_number);
 void op_add(stack_t **stack, unsigned int line_number);
 stack_t **stack_builder(int value, int max_lines);
 void free_stack(stack_t **stack);
+void op_not_found(char *possible_op, unsigned int line_number, stack_t **stack);
 
 #endif /* MONTY_H */
