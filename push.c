@@ -15,7 +15,7 @@ void op_push(stack_t **stack, unsigned int line_number)
 
 	if (n == 606)
 	{
-		fprintf(stderr, "%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
