@@ -10,6 +10,7 @@ int collect_data(char *filename)
 	int push = 0;
 	stack_t **stack = NULL;
 	unsigned int linecount = 0;
+	int nop;
 
 	fp = fopen(filename, "r");
 	if (fp == NULL)
@@ -23,6 +24,8 @@ int collect_data(char *filename)
 		wordcount = 0;
 		while ((c = fgetc(fp)) != '\n')
 		{
+			nop = 0;
+			printf("nop: %d\n", nop);
 			if (wordcount >= 1)
 			{
 				while (fgetc(fp) != '\n')
@@ -48,17 +51,30 @@ int collect_data(char *filename)
 					{
 						stack = stack_builder(number, 100);
 					}
+					else if (strcmp(str1, "nop") == 0)
+					{
+						nop = 1;
+						printf("nop = %d\n", nop);
+					}
 					else
 					{
 						fprintf(stderr, "Error: malloc failed\n");
 						exit(EXIT_FAILURE);
 					}
 				}
-				if (push == 1)
-					(*stack)->n = number;
-				find_op(str1)(stack, linecount);
-				(*stack)->n = 606;
-				push = 0;
+				if (nop == 1)
+				{
+					wordcount--;
+					break;
+				}
+				else
+				{
+					if (push == 1)
+						(*stack)->n = number;
+					find_op(str1)(stack, linecount);
+					(*stack)->n = 606;
+					push = 0;
+				}
 		}
 	}
 

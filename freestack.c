@@ -6,7 +6,7 @@ void free_stack(stack_t **stack)
 	stack_t *tmp = (*stack)->next;
 	stack_t *free_hold;
 
-	while(tmp->prev != NULL)
+	while (tmp->prev != NULL)
 	{
 		free_hold = tmp;
 		tmp = tmp->prev;
