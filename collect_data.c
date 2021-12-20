@@ -2,7 +2,6 @@
 
 int collect_data(char *filename)
 {
-	extern FILE *fp;
 	char str1[10];
 	int number;
 	int c;

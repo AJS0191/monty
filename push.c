@@ -8,7 +8,6 @@
 */
 void op_push(stack_t **stack, unsigned int line_number)
 {
-	
 	stack_t *newNode;
 	stack_t *head = *stack;
 	int n = stack[1]->n;

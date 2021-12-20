@@ -3,6 +3,8 @@
 /**
  * find_op - matches the correct op_function
  * @possible_op: word passed in from file
+ * @line_number: the line number
+ * @stack: the stack
  * Return: the correctly paired function
  */
 void (*find_op(char *possible_op, unsigned int line_number, stack_t **stack))(stack_t **, unsigned int)
