@@ -5,6 +5,7 @@
 #include <stddef.h>
 #include <string.h>
 #include <ctype.h>
+#define _POSIX_C_SOURCE 200809L
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -37,6 +38,7 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+extern char *arg;
 FILE *fp;
 
 int collect_data(char *filename);
