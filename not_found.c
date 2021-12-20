@@ -13,4 +13,5 @@ void op_not_found(char *possible_op, unsigned int line_number, stack_t **stack)
 	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, possible_op);
 	free_stack(stack);
 	exit(EXIT_FAILURE);
+	
 }
