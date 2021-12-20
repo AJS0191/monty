@@ -14,7 +14,7 @@ void (*find_op(char *possible_op, unsigned int line_number, stack_t **stack))(st
 		{"pop", op_pop},
 		{"swap", op_swap},
 		{"add", op_add},
-		{"nop", NULL},
+		{"nop", op_nop},
 	};
 	int i;
 

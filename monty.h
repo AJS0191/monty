@@ -50,5 +50,6 @@ void op_add(stack_t **stack, unsigned int line_number);
 stack_t **stack_builder(int value, int max_lines);
 void free_stack(stack_t **stack);
 void op_not_found(char *possible_op, unsigned int line_number, stack_t **stack);
+void op_nop(stack_t **stack, unsigned int line_number);
 
 #endif /* MONTY_H */
