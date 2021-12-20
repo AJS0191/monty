@@ -44,7 +44,7 @@ int collect_data(char *filename)
 			wordcount++;
 			if (stack == NULL)
 			{
-				if (strcmp(str1, "push") == 0 || strcmp(str1, "pall") == 0)
+				if (strcmp(str1, "push") == 0 || strcmp(str1, "pall") == 0 || strcmp(str1, "nop") == 0)
 				{
 					stack = stack_builder(number, 100);
 				}
